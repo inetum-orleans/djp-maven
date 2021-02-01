@@ -1,0 +1,6 @@
+user: user
+group: user
+paths:
+  - /
+  - /home/user/.m2
+

@@ -1,0 +1,24 @@
+local ddb = import 'ddb.docker.libjsonnet';
+
+local defaultName = ddb.File(std.thisFile).parent.name;
+
+local factory(name, params={}) =
+	{services+: {
+		[name]+:
+			ddb.Build(defaultName) +
+			ddb.User() +
+			ddb.Binary("mvn", "/project", "mvn") +
+			{
+				restart: "no",
+				volumes+: [
+					ddb.path.project + ":/project",
+					name + '-local-repository:/home/user/.m2'
+				]
+			}
+		}
+	};
+
+{
+  factory: factory,
+  defaultName: defaultName
+}

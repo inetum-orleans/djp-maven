@@ -1,0 +1,10 @@
+FROM maven:{{ cookiecutter.maven_version }}
+
+RUN adduser user && mkdir -p /project && mkdir -p /home/user/.m2 && chown -R user:user /home/user/.m2 && chown -R user:user /project
+
+ENV MAVEN_CONFIG=/home/user/.m2
+
+USER user
+WORKDIR /project
+
+VOLUME /home/user/.m2
