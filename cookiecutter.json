@@ -1,4 +1,4 @@
 {
   "directory": ".docker/maven",
-  "maven_version": ["3-jdk-11", "3-jdk-8"]
+  "maven_version": "3-jdk-11"
 }
